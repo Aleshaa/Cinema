@@ -1,0 +1,240 @@
+<form accept-charset="UTF-8" action="#" class="pro-form" id="pro-form" method="post">
+
+    <h1>Progress Form</h1>
+
+    <div class="progress-wrap">
+        <progress max="100" value="0" id="progress"></progress>
+        <div class="progress-message" id="progress-message">The form, it wants you.</div>
+    </div>
+
+    <input id="subscription_plan_id" name="subscription[plan_id]" type="hidden" value="1">
+
+    <input id="subscription_stripe_card_token" name="subscription[stripe_card_token]" type="hidden">
+
+    <div class="field">
+        <label for="card_name">Name on Card</label>
+        <br>
+        <input id="card_name" required="required" type="text">
+    </div>
+
+    <div class="field">
+        <label for="card_address_1">Street Address</label>
+        <br>
+        <input id="card_address_1" required="required" type="text">
+        <input id="card_address_2" type="text">
+    </div>
+
+    <div class="field">
+        <label for="card_zip">Zip Code</label>
+        <br>
+        <input id="card_zip" maxlength="10" pattern="[0-9]*" required="required" type="text">
+    </div>
+
+    <div class="field">
+        <label for="card_number">Credit Card Number</label>
+        <br>
+        <input id="card_number" pattern="[0-9]*" required="required" type="number">
+    </div>
+
+    <div class="field">
+        <label for="card_code">Security Code on Card (CVV)</label>
+        <br>
+        <input id="card_code" required="required" type="text">
+    </div>
+
+    <div class="field">
+        <label for="card_month">Card Expiration</label>
+        <br>
+        <select id="card_month">
+            <option value="1">1 - January</option>
+            <option value="2">2 - February</option>
+            <option value="3">3 - March</option>
+            <option value="4">4 - April</option>
+            <option value="5">5 - May</option>
+            <option value="6">6 - June</option>
+            <option value="7">7 - July</option>
+            <option value="8">8 - August</option>
+            <option value="9">9 - September</option>
+            <option value="10">10 - October</option>
+            <option value="11">11 - November</option>
+            <option value="12">12 - December</option>
+        </select>
+
+        <select id="card_year">
+            <option value="2012">2012</option>
+            <option value="2013">2013</option>
+            <option value="2014">2014</option>
+            <option value="2015">2015</option>
+            <option value="2016">2016</option>
+            <option value="2017">2017</option>
+            <option value="2018">2018</option>
+            <option value="2019">2019</option>
+            <option value="2020">2020</option>
+            <option value="2021">2021</option>
+            <option value="2022">2022</option>
+            <option value="2023">2023</option>
+            <option value="2024">2024</option>
+            <option value="2025">2025</option>
+            <option value="2026">2026</option>
+            <option value="2027">2027</option>
+        </select>
+
+    </div>
+
+    <div class="actions">
+
+        <input name="commit" type="submit" value="Subscribe" class="button">
+    </div>
+
+</form>
+
+@import "compass/css3";
+
+* { @include box-sizing(border-box); }
+body {
+background: #333;
+font-family: "Lucida Grande", "Lucida Sans Unicode", Tahoma, Sans-Serif;
+font-size: 14px;
+line-height: 1.4;
+padding: 20px;
+}
+h1, h2 {
+font-family: Sans-Serif;
+}
+
+.pro-form {
+width: 350px;
+border-radius: 20px;
+@include background(linear-gradient(#268ad0, #59c1d4));
+padding: 2px 20px 20px 20px;
+.field {
+margin: 0 0 10px 0;
+input[type=text], input[type=number] {
+width: 100%;
+}
+}
+}
+#card_zip {
+width: 50%;
+}
+#card_code {
+width: 30%;
+}
+#card_address_2 {
+margin-top: 3px;
+}
+
+.actions {
+margin-top: 25px;
+.button {
+display: block;
+width: 100%;
+float: none;
+text-align: center;
+font-size: 120%;
+}
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
+
+input[type='text'],
+input[type='number'], {
+-webkit-appearance: none;
+@include background(linear-gradient(#ccc, #fff));
+padding: 4px 20px 4px 5px;
+outline: 0;
+border: 0;
+box-shadow: inset 1px 1px 1px rgba(black, 0.3);
+&:focus {
+background: white;
+}
+}
+
+.button {
+float: left;
+border: 0;
+padding: 12px 16px;
+@include background(linear-gradient(#323232, #272727));
+box-shadow: inset 0 1px 0 #3c3c3c;
+border-radius: 5px;
+border: 1px solid #111;
+color: white !important;
+font-size: 16px;
+text-shadow: 0 1px 1px rgba(0,0,0,0.8);
+text-overflow: ellipsis;
+cursor: pointer;
+&:hover, &:focus, &.gsc-cursor-current-page {
+background: #333;
+text-decoration: none !important;
+@include box-shadow((0 2px 3px -2px rgba(0, 0, 0, 0.5)));
+strong {
+background: #999;
+color: black;
+}
+}
+&:active {
+position: relative;
+top: 1px;
+box-shadow: none;
+}
+&.active {
+background: black;
+}
+a {
+color: white;
+}
+}
+
+.progress-wrap {
+text-align: center;
+font-size: 10px;
+color: white;
+margin: 0 0 20px 0;
+progress {
+width: 100%;
+margin: 0 0 5px 0;
+}
+}
+
+$("#pro-form input").keyup(function() {
+
+var numValid = 0;
+$("#pro-form input[required]").each(function() {
+if (this.validity.valid) {
+numValid++;
+}
+});
+
+var progress = $("#progress"),
+progressMessage = $("#progress-message");
+
+if (numValid == 0) {
+progress.attr("value", "0");
+progressMessage.text("The form, it wants you.");
+}
+if (numValid == 1) {
+progress.attr("value", "20");
+progressMessage.text("There you go, great start!");
+}
+if (numValid == 2) {
+progress.attr("value", "40");
+progressMessage.text("Nothing can stop you now.");
+}
+if (numValid == 3) {
+progress.attr("value", "60");
+progressMessage.text("You're basically a hero, right?");
+}
+if (numValid == 4) {
+progress.attr("value", "80");
+progressMessage.text("They are going to write songs about you.");
+}
+if (numValid == 5) {
+progress.attr("value", "95");
+progressMessage.text("SO CLOSE. PRESS THE THING.");
+}
+
+});
